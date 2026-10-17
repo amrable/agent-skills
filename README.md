@@ -47,6 +47,33 @@ See [installation and compatibility](skills/mental/INSTALL.md), the
 [skill instructions](skills/mental/SKILL.md), and
 [examples](skills/mental/references/examples.md).
 
+## socratic-code-mentor
+
+A learning-by-building mentor skill by
+[ogzhanolguncu](https://github.com/ogzhanolguncu). You implement the learning
+exercise's core logic while the agent guides you and handles supporting work.
+
+### Install
+
+```sh
+npx skills add amrable/agent-skills --skill socratic-code-mentor
+```
+
+To install globally for Codex:
+
+```sh
+npx skills add amrable/agent-skills --skill socratic-code-mentor --agent codex --global
+```
+
+Invoke `$socratic-code-mentor` in Codex or `/socratic-code-mentor` in Claude Code.
+Unlike `mental`, the imported skill also allows automatic activation for learning
+requests, according to its description.
+
+See [the instructions](skills/socratic-code-mentor/SKILL.md) and
+[source attribution and license status](skills/socratic-code-mentor/SOURCE.md).
+
 ## License
 
-MIT. See [LICENSE](LICENSE).
+Original material is MIT licensed; see [LICENSE](LICENSE). The imported
+`socratic-code-mentor` skill is excluded: its source gist provides no explicit
+license. See its [source notice](skills/socratic-code-mentor/SOURCE.md).
