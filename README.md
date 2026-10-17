@@ -11,7 +11,7 @@ clear explanations, and learning through practice.
 | What you need | Skill | What it does |
 | --- | --- | --- |
 | “Show me the big picture.” | [mental](skills/mental/SKILL.md) | Maps actors and communication with diagrams, from the simplest setup to the system you have now. |
-| “Help me learn by building it.” | [socratic-code-mentor](skills/socratic-code-mentor/SKILL.md) | Guides a learning project while you write the core logic and the agent handles supporting work. |
+| “Help me learn by building it.” | [coach](skills/coach/SKILL.md) | Guides a learning project while you write the core logic and the agent handles supporting work. |
 
 ## What belongs here
 
@@ -68,7 +68,7 @@ See [installation and compatibility](skills/mental/INSTALL.md), the
 [skill instructions](skills/mental/SKILL.md), and
 [examples](skills/mental/references/examples.md).
 
-## socratic-code-mentor
+## coach
 
 A learning-by-building mentor skill by
 [ogzhanolguncu](https://github.com/ogzhanolguncu). You implement the learning
@@ -77,24 +77,24 @@ exercise's core logic while the agent guides you and handles supporting work.
 ### Install
 
 ```sh
-npx skills add amrable/agent-skills --skill socratic-code-mentor
+npx skills add amrable/agent-skills --skill coach
 ```
 
 To install globally for Codex:
 
 ```sh
-npx skills add amrable/agent-skills --skill socratic-code-mentor --agent codex --global
+npx skills add amrable/agent-skills --skill coach --agent codex --global
 ```
 
-Invoke `$socratic-code-mentor` in Codex or `/socratic-code-mentor` in Claude Code.
+Invoke `$coach` in Codex or `/coach` in Claude Code.
 Unlike `mental`, the imported skill also allows automatic activation for learning
 requests, according to its description.
 
-See [the instructions](skills/socratic-code-mentor/SKILL.md) and
-[source attribution and license status](skills/socratic-code-mentor/SOURCE.md).
+See [the instructions](skills/coach/SKILL.md) and
+[source attribution and license status](skills/coach/SOURCE.md).
 
 ## License
 
 Original material is MIT licensed; see [LICENSE](LICENSE). The imported
-`socratic-code-mentor` skill is excluded: its source gist provides no explicit
-license. See its [source notice](skills/socratic-code-mentor/SOURCE.md).
+`coach` skill is excluded: its source gist provides no explicit
+license. See its [source notice](skills/coach/SOURCE.md).
