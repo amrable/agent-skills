@@ -6,9 +6,48 @@ disable-model-invocation: true
 
 # Mental
 
-Build an accurate mental model of the topic in the user's current context. Help
-them see who participates, who talks to whom, what moves between them, and why
-each piece exists.
+Explain the system through its actors, boundaries, and communication.
+
+## Output contract: diagram first
+
+A completed mental explanation MUST include a diagram in the response itself.
+Write one short sentence to orient the reader, then immediately include either:
+
+- A fenced code block whose language tag is exactly `mermaid` (the default).
+- An embedded, rendered D2 image, if rendering is available and D2 is requested.
+
+Then explain the flow and its evolution in concise prose. Construct the diagram
+before writing the longer explanation, so the visual cannot be dropped at the end.
+This contract also applies to short answers and follow-up explanations that
+continue an explicitly invoked mental-model discussion. A clarification question
+alone does not need a diagram. If the user explicitly requests no diagram, follow
+that request.
+
+ASCII arrows, bullet lists, tables, ordinary code blocks, a link to a diagram,
+a promise to draw one later, and unrendered D2 source do not satisfy this contract.
+Do not ask whether the user wants a diagram. If no renderer is available, emit
+Mermaid source anyway; do not replace it with text because the chat might not
+render it. No diagram-generation tool is needed for a Mermaid code block.
+
+Example of the required response shape (adapt the actors to the actual context):
+
+~~~~markdown
+The browser asks the API to save data; the API owns database access.
+
+```mermaid
+sequenceDiagram
+    participant Browser
+    participant API
+    participant Database
+    Browser->>API: Save form data
+    API->>Database: Store accepted data
+    Database-->>API: Saved record
+    API-->>Browser: Success response
+```
+
+The form starts in the browser. Adding an API lets it save remotely; adding a
+database lets the saved data outlive an individual request.
+~~~~
 
 ## Explicit invocation
 
@@ -53,7 +92,7 @@ avoid flag inventories, implementation walkthroughs, and unrelated alternatives.
 Retain details that change the model, such as a cache avoiding a download or an
 asynchronous acknowledgement arriving before work finishes.
 
-## Required diagram
+## Diagram accuracy
 
 Every response produced with this skill must contain at least one Mermaid
 diagram or a rendered D2 image. Default to a fenced `mermaid` block: it requires
@@ -78,6 +117,13 @@ no rendering tools and the source remains readable when rendering is unavailable
 
 Follow the diagram with a short walkthrough of the concrete action. End when the
 model is clear; do not append implementation tasks or generic summaries.
+
+## Before sending
+
+Inspect the response itself: does it contain a fenced `mermaid` block or an
+embedded rendered D2 image? If neither is present, the explanation is incomplete.
+Add the diagram before sending. Check that its arrows match the prose and trace
+at least one real interaction with concrete actors and labeled communication.
 
 ## Examples
 
