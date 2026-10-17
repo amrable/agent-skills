@@ -1,6 +1,27 @@
-# Agent skills
+# Skills for Understanding
 
-Portable skills for coding agents, maintained by [amrable](https://github.com/amrable).
+Coding agent skills that help you understand the software you work with.
+
+See how the pieces fit together. Follow a request across services. Build a small
+version yourself to learn why it works. This collection focuses on mental models,
+clear explanations, and learning through practice.
+
+## Pick a way to learn
+
+| What you need | Skill | What it does |
+| --- | --- | --- |
+| “Show me the big picture.” | [mental](skills/mental/SKILL.md) | Maps actors and communication with diagrams, from the simplest setup to the system you have now. |
+| “Help me learn by building it.” | [socratic-code-mentor](skills/socratic-code-mentor/SKILL.md) | Guides a learning project while you write the core logic and the agent handles supporting work. |
+
+## What belongs here
+
+Each skill should help you explain how something works, trace an interaction, or
+build understanding through practice. A useful result is something you can reason
+about yourself: a diagram you can walk through, a flow you can follow, or a small
+implementation you understand.
+
+Maintained by [amrable](https://github.com/amrable). Skills use portable
+`SKILL.md` instructions; invocation syntax and enforcement vary by coding agent.
 
 ## mental
 
