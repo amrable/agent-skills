@@ -13,7 +13,7 @@ Explain the system through its actors, boundaries, and communication.
 A completed mental explanation MUST include a diagram in the response itself.
 Write one short sentence to orient the reader, then immediately include either:
 
-- A fenced code block whose language tag is exactly `mermaid` (the default).
+- A fenced `mermaid` block using `sequenceDiagram` and `autonumber` (the default).
 - An embedded, rendered D2 image, if rendering is available and D2 is requested.
 
 Then explain the flow and its evolution in concise prose. Construct the diagram
@@ -36,6 +36,7 @@ The browser asks the API to save data; the API owns database access.
 
 ```mermaid
 sequenceDiagram
+    autonumber
     participant Browser
     participant API
     participant Database
@@ -98,8 +99,19 @@ Every response produced with this skill must contain at least one Mermaid
 diagram or a rendered D2 image. Default to a fenced `mermaid` block: it requires
 no rendering tools and the source remains readable when rendering is unavailable.
 
-- Use a flowchart for topology, boundaries, or stages; use a sequence diagram
-  when request order, replies, or asynchronous messages are central.
+- Prefer a numbered sequence diagram: start Mermaid diagrams with
+  `sequenceDiagram` followed by `autonumber`. Make the order of calls, messages,
+  and replies visible. Introduce participants in a readable left-to-right order.
+- Number replies as well as requests so the reader can follow the complete
+  interaction. Trace the numbered steps in the prose; keep references consistent
+  with the diagram. Numbering shows the illustrated scenario, not a claim that
+  concurrent work always runs in one fixed order. Use `par`, `alt`, or `opt` when
+  concurrency, alternatives, or optional steps change the model.
+- For an evolution, use separate small numbered sequences for meaningful stages;
+  keep participant names stable and explain which actor or message was added.
+- Use a flowchart only when topology or structure is the main question and a
+  sequence would obscure it, or when the user requests one. For D2 images that
+  show an interaction, prefer a sequence layout and explicitly number messages.
 - Use concrete actor names and directional arrows labeled with actions or data.
   Avoid unlabeled arrows and decorative boxes that explain nothing.
 - Keep each diagram focused on the interaction being explained. Split different
@@ -122,7 +134,8 @@ model is clear; do not append implementation tasks or generic summaries.
 
 Inspect the response itself: does it contain a fenced `mermaid` block or an
 embedded rendered D2 image? If neither is present, the explanation is incomplete.
-Add the diagram before sending. Check that its arrows match the prose and trace
+Add the diagram before sending. For a Mermaid sequence diagram, verify that
+`autonumber` is present. Check that its arrows match the prose and trace
 at least one real interaction with concrete actors and labeled communication.
 
 ## Examples

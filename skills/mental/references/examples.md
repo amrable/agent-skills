@@ -21,24 +21,22 @@ Publishing uploads a named, versioned package archive to a registry. A consumer
 can then request that package with `npx @example/dummy-cli Amr`.
 
 ```mermaid
-flowchart LR
-    subgraph Author["Author's computer"]
-        Source["cli.js and package.json"]
-        Publish["npm publish"]
-        Source -->|"package selected files"| Publish
+sequenceDiagram
+    autonumber
+    participant Author as Author's computer
+    participant Registry as npm registry
+    participant Runner as npx on user's computer
+    participant Node as Local Node.js process
+    Author->>Registry: Publish versioned package archive
+    Note over Author,Registry: Distribution setup; happens before the user's run
+    opt Package download needed
+        Runner->>Registry: Request named package
+        Registry-->>Runner: Package metadata and archive
     end
-    Registry["npm registry: versioned package archives"]
-    Publish -->|"upload archive and metadata"| Registry
-    subgraph Consumer["Package user's computer"]
-        Runner["npx"]
-        Node["Node.js running cli.js"]
-        Terminal["User's terminal"]
-        Runner -->|"resolve bin; pass Amr"| Node
-        Node -->|"print greeting"| Terminal
-    end
-    Runner -->|"request named package if needed"| Registry
-    Registry -->|"download archive if not cached"| Runner
+    Runner->>Node: Resolve bin and run cli.js with Amr
+    Node-->>Runner: Print greeting through inherited terminal output
 ```
+
 
 Walk through the user's command: npx resolves the package, obtains or reuses it,
 selects its executable, and starts the CLI locally. The registry delivers code;
@@ -64,6 +62,7 @@ database access; verify this against the actual application.
 
 ```mermaid
 sequenceDiagram
+    autonumber
     actor User
     participant Browser as Browser frontend
     participant API as Backend API
@@ -93,6 +92,7 @@ a price. Show the extra network hop and the dependency it introduces.
 
 ```mermaid
 sequenceDiagram
+    autonumber
     participant Client
     participant A as Server A: orders
     participant B as Server B: pricing
@@ -116,6 +116,7 @@ process it separately; the caller then needs a way to learn when it is done.
 
 ```mermaid
 sequenceDiagram
+    autonumber
     participant Client
     participant API
     participant Queue
